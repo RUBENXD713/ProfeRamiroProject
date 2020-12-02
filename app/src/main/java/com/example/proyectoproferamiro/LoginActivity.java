@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //JSONObject datos=new JSONObject();
         switch (view.getId()){
             case R.id.Iniciar:
-                String urlEnv = "http::/127.0.0.1:8000/api/login";
+                String urlEnv = "http://192.168.1.71:8000/api/login";
 
                 JSONObject datos = new JSONObject();
                 try {
@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
                 Elcartero.add(puntajeJson);
+                setContentView(R.layout.usuario);
 
                 //startActivity(new Intent(getApplicationContext(), MainActivity.class));
                /* try {
@@ -107,7 +108,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //startActivity(new Intent(getApplicationContext(), MainActivity.class));*/
                 break;
             case R.id.Registrar:
-                Toast.makeText(getApplicationContext(), "Lo sentimos aun no esta disponible.", Toast.LENGTH_LONG).show();
+                setContentView(R.layout.activity_registro);
+                //Toast.makeText(getApplicationContext(), "Lo sentimos aun no esta disponible.", Toast.LENGTH_LONG).show();
                 break;
         }
 
