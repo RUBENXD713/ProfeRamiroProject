@@ -33,12 +33,12 @@
             android:gravity="center"
             android:layout_weight="1">
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/txtCorreo"
                 android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="20sp"
-                android:hint="email"
+                android:hint="Correo"
                 android:textColorHint="#5d5d5d"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -54,7 +54,7 @@
             android:layout_weight="1"
             android:gravity="clip_horizontal">
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/txtContra"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -78,12 +78,12 @@
             android:layout_weight="1"
             android:layout_marginBottom="30sp">
             <Button
-                android:id="@+id/Iniciar"
+                android:id="@+id/btnIniciar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="30sp"
                 android:text="Iniciar Sesion"
-                android:background="#9F03A9F4"
+                android:background="#8A00BCD4"
                 android:textSize="30sp"/>
         </LinearLayout>
         <LinearLayout
@@ -91,12 +91,12 @@
             android:layout_height="0dp"
             android:layout_weight="1">
             <Button
-                android:id="@+id/Registrar"
+                android:id="@+id/btnRegistrar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="30sp"
                 android:text="Registrarme"
-                android:background="#9F03A9F4"
+                android:background="#8A00BCD4"
                 android:textSize="30sp"/>
         </LinearLayout>
 

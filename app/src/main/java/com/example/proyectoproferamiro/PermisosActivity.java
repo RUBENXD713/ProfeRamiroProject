@@ -32,9 +32,9 @@ public class PermisosActivity extends AppCompatActivity implements View.OnClickL
     Switch swPermisoInternet;
     Switch swPermisoLlamar;
     Switch swPermisoCamara;
-    private RecyclerView rvPermiso;
+    private RecyclerView RVPermiso;
 
-    final private int ventana = 11;
+    final private int ventana = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +45,10 @@ public class PermisosActivity extends AppCompatActivity implements View.OnClickL
 
         solicitarPermiso();
 
-        rvPermiso = findViewById(R.id.rvPermisos);
+        RVPermiso = findViewById(R.id.rvPermisos);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        rvPermiso.setLayoutManager(layoutManager);
+        RVPermiso.setLayoutManager(layoutManager);
 
         final List<Permiso> ListaPermisos = new ArrayList<>();
         ListaPermisos.add(new Permiso("localizacion",false, Manifest.permission.ACCESS_FINE_LOCATION));
@@ -57,27 +57,8 @@ public class PermisosActivity extends AppCompatActivity implements View.OnClickL
         ListaPermisos.add(new Permiso("Almacenamiento",false, Manifest.permission.READ_EXTERNAL_STORAGE));
 
         final AdaptadorPermiso Permisos = new AdaptadorPermiso(ListaPermisos,this);
-       // Permisos.setOnClicListener(new View.OnClickListener()
-        /*{
-            @Override
-            public void onClick(View view) {
-                Permiso permisoSelec = ListaPermisos.get(rvPermiso.getChildAdapterPosition(view));
-                int elPermiso = ActivityCompat.checkSelfPermission(getApplicationContext(), permisoSelec.getPeermisoReal());
 
-                if(elPermiso != PackageManager.PERMISSION_GRANTED) {
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[]{permisoSelec.getPeermisoReal()}, ventana);
-                        return;
-                    }
-                }
-                if (permisoSelec.getPeermisoReal() == Manifest.permission.CALL_PHONE)
-                    hacerLlamada();
-
-            }
-        });*/
-
-        rvPermiso.setAdapter(Permisos);
+        RVPermiso.setAdapter(Permisos);
 
     }
 
@@ -85,7 +66,7 @@ public class PermisosActivity extends AppCompatActivity implements View.OnClickL
 
     }
     private void hacerLlamada() {
-        startActivity(new Intent(ACTION_CALL, Uri.parse("tel:8715265468")));
+        startActivity(new Intent(ACTION_CALL, Uri.parse("tel:8713452055")));
     }
 
     @Override

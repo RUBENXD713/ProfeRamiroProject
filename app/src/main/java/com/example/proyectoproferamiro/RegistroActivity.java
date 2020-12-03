@@ -2,7 +2,6 @@ package com.example.proyectoproferamiro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,52 +19,47 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
+public class RegistroActivity extends AppCompatActivity {
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
+    EditText Usuario;
+    EditText Password;
     EditText Correo;
-    EditText password;
+    Button btnRegistrar;
     private RequestQueue elcartero;
     private VolleyS volleyS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registro);
 
         volleyS = VolleyS.getInstance(this.getApplicationContext());
         elcartero = volleyS.getRequestQueue();
 
-        Correo = findViewById(R.id.txtCorreo);
-        password = findViewById(R.id.txtContra);
+        Usuario = (EditText) findViewById(R.id.txtRegUsuario);
+        Password = (EditText) findViewById(R.id.txtRegContra);
+        Correo = (EditText) findViewById(R.id.txtRegCorreo);
+        btnRegistrar = (Button) findViewById(R.id.btnRegRegistro);
 
-        findViewById(R.id.btnIniciar).setOnClickListener(this);
-        findViewById(R.id.btnRegistrar).setOnClickListener(this);
-    }
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://192.168.0.105:8000/api/registro";
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btnIniciar:
-                String url = "http://192.168.1.71:8000/api/login";
-
-                final JSONObject datos = new JSONObject();
+                JSONObject datos = new JSONObject();
                 try {
+                    datos.put("name", Usuario.getText());
                     datos.put("email", Correo.getText());
-                    datos.put("password", password.getText());
+                    datos.put("password", Password.getText());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                final JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, datos, new Response.Listener<JSONObject>() {
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, datos, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(getApplicationContext(), response.toString(),Toast.LENGTH_LONG).show();
+                        Log.i("Request", response.toString());
 
-                        Intent logeo = new Intent(getApplicationContext(), MainActivity.class);
-                        logeo.putExtra("email", Correo.getText());
-                        startActivity(logeo);
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -75,11 +69,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 });
                 elcartero.add(request);
 
-                break;
-            case R.id.btnRegistrar:
-                startActivity(new Intent(getApplicationContext(), RegistroActivity.class));
-                break;
-        }
+                Toast.makeText(getApplicationContext(), "El usuario se a registrado", Toast.LENGTH_LONG).show();
+
+                Usuario.setText("Usuario");
+                Password.setText("*****");
+                Correo.setText("Ejemplo@gmail.com");
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            }
+        });
 
     }
 
